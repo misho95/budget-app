@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../dist/output.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-200 dark:bg-gray-800 flex justify-center pt-10">
+    <div class="w-2/3 flex flex-col gap-5">
+        <!-- header logo/darkmode-->
+        <div class="flex justify-between">
+            <span class="text-xl font-HachiMaruPop text-gray-500 dark:text-gray-300"><a href="./index.html">Budget-APP</a></span>
+            <span>
+                <div id="darkSlider" class="w-16 h-8 bg-gray-200 dark:bg-gray-800 rounded-full border-2 border-gray-300 dark:border-gray-700 relative">
+                    <div id="darkBTN" class="w-6 h-6 bg-gray-400 dark:bg-gray-600 absolute left-1 top-1/2 -translate-y-1/2 rounded-full border-2 border-gray-300 dark:border-gray-700 flex justify-center items-center  duration-200">
+                        <span id="darkIcon" class="material-symbols-outlined text-gray-200 dark:text-gray-400 select-none" style="font-size: 15px;">
+                            light_mode
+                        </span>
+                    </div>
+                </div>
+            </span>
+        </div>
+
+        
+      
+        <!-- content -->
+        <div class="flex justify-center items-center">
+            <a href="./index.html" class="bg-purple-300 dark:bg-purple-400 p-3 rounded-full flex justify-center items-center text-purple-800">
+                <span class="material-symbols-outlined" style="font-size: 30px">
+                    home
+                </span>
+            </a>
+        </div>
+        <div class="p-2 flex justify-center items-center">
+           <form id="invForm" class="w-full sm:w-1/2 flex flex-col text-gray-600 dark:text-gray-300 gap-3">
+                <fieldset class="border-2 border-gray-300 dark:border-gray-600 p-2">
+                    <legend class="px-2 ">Date</legend>
+                    <input id="date" type="date" class="bg-gray-200 dark:bg-gray-800 w-full py-1 px-2 focus:outline-none" required/>
+                </fieldset>
+                <fieldset class="border-2 border-gray-300 dark:border-gray-600 p-2">
+                    <legend class="px-2 ">Type</legend>
+                    <lable>
+                        Income
+                        <input type="radio" name="income" checked>
+                    </lable>
+                    <lable>
+                        Expense
+                        <input type="radio" name="income">
+                    </lable>
+                </fieldset>
+                <fieldset class="border-2 border-gray-300 dark:border-gray-600 p-2">
+                    <legend class="px-2 ">Category</legend>
+                    <select id="category" class="bg-gray-200 dark:bg-gray-800 w-full py-1 px-2 focus:outline-none" required>
+                        <option>invoice</option>
+                        <option>other</option>
+                    </select>
+                </fieldset>
+                <fieldset class="border-2 border-gray-300 dark:border-gray-600 p-2">
+                    <legend class="px-2 ">Amount</legend>
+                    <input id="amount" type="text" placeholder="amount.." class="bg-gray-200 dark:bg-gray-800 w-full py-1 px-2 focus:outline-none" required/>
+                </fieldset>
+                <button class="bg-purple-300 dark:bg-purple-400 text-purple-800 p-3">Add New Invoice</button>
+           </form>
+        </div>
+    </div>
+    <script src="./main.js"></script>
+    <script src="add.js"></script>
+</body>
+</html>

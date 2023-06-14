@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {},
     fontFamily: {
-      Kablammo: ['Kablammo', 'sans-serif'],
+      HachiMaruPop: ['Hachi Maru Pop', 'sans-serif'],
     }
   },
   plugins: [],
