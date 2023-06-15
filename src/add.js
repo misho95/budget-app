@@ -33,7 +33,7 @@ invForm.addEventListener(`submit`, (e) => {
     const amount = document.querySelector('#amount');
     const id = new Date().getTime();
 
-    var numberRegex = /^\d+$/;
+    const numberRegex = /^\d+$/;
 
     const getIcon = (val) => {
         switch(val){
@@ -51,7 +51,11 @@ invForm.addEventListener(`submit`, (e) => {
     }
 
 
-    if(numberRegex.test(amount.value)){
+    if(!numberRegex.test(amount.value)){
+        alert('amount input is invalid, please use only numbers');
+        return;
+    }
+
         if(data){
             const newData = {
                     id,
@@ -76,9 +80,7 @@ invForm.addEventListener(`submit`, (e) => {
             }
             localStorage.setItem('data', JSON.stringify([newData]));
         }
-    } else {
-        alert('amount input is invalid, please use only numbers');
-    }
+   
 
  
     invForm.reset();
