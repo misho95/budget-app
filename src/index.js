@@ -2,6 +2,14 @@ const data = JSON.parse(localStorage.getItem('data'));
 
 const sortBy = document.querySelector('#sortBy');
 
+const addBtn = `
+<div onclick="addInv()" class="bg-purple-300 dark:bg-purple-400 text-purple-800 w-full sm:w-fit h-fit p-10 flex justify-center items-center rounded-lg">
+<span class="material-symbols-outlined select-none" style="font-size: 30px">
+    add_box
+    </span>
+</div>
+`;
+
 const sortData = (data, sortBy) => {
     switch(sortBy){
         case 'Date':
@@ -48,7 +56,7 @@ const render = (data) => {
         <!-- invoice -->
         <div class="w-full sm:w-fit h-fit ${inv.type ? 'bg-green-300 dark:bg-green-400' : 'bg-red-300 dark:bg-red-400'} p-3 rounded-lg text-gray-800 flex flex-col gap-2 relative pr-12">
             <div class="absolute right-3 top-3 pb-3 h-full flex flex-col justify-between">
-                <button>
+                <button onClick="deleteBtn(${inv.id})">
                     <span class="material-symbols-outlined">
                         delete
                         </span>
@@ -73,14 +81,8 @@ const render = (data) => {
 
     const joinMap = mapData.join('');
     const root = document.querySelector('#root');
-    const before = `
-    <div onclick="addInv()" class="bg-purple-300 dark:bg-purple-400 text-purple-800 w-full sm:w-fit h-fit p-10 flex justify-center items-center rounded-lg">
-    <span class="material-symbols-outlined select-none" style="font-size: 30px">
-        add_box
-        </span>
-    </div>
-    `;
-    const html = before.concat(joinMap);
+
+    const html = addBtn.concat(joinMap);
     root.innerHTML = html;
 
     sortBy.addEventListener('change', (e) => {
@@ -90,6 +92,10 @@ const render = (data) => {
 
     if(data){
        render(data);
+    } else {
+        
+    const root = document.querySelector('#root');
+    root.innerHTML = addBtn;
     };
 
 
@@ -110,6 +116,16 @@ const render = (data) => {
 
        render(filterData);
     });
+
+
+    function deleteBtn(id) {
+        const data = JSON.parse(localStorage.getItem('data'))
+        const newData = data.filter( (inv) => {
+            if(inv.id !== id) return inv;
+        })
+        render(newData);
+        localStorage.setItem('data', JSON.stringify(newData));
+    }
 
 
     (() => {
