@@ -61,11 +61,11 @@ const render = (data) => {
                         delete
                         </span>
                 </button>
-                <button>
+                <a href="./edit.html?ID=${inv.id}">
                     <span class="material-symbols-outlined">
                         edit
                     </span>
-                </button>
+                </a>
             </div>
              <div class="flex items-center gap-2"><span class="material-symbols-outlined">
                  calendar_month
