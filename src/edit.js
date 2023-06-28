@@ -35,14 +35,14 @@ root.innerHTML = `
     <legend class="px-2 ">Category</legend>
     <select id="category" class="bg-gray-200 dark:bg-gray-800 w-full py-1 px-2 focus:outline-none" required>
     ${filter[0].type ? `
-    <option>invoice</option>
-    <option>other</option>
+    <option ${filter[0].category === 'invoice' ? 'selected' : ''}>invoice</option>
+    <option ${filter[0].category === 'other' ? 'selected' : ''}>other</option>
     ` : `
-    <option>shopping</option>
-    <option>gym</option>
-    <option>family</option>
-    <option>invoice</option>
-    <option>other</option>
+    <option ${filter[0].category === 'shopping' ? 'selected' : ''}>shopping</option>
+    <option ${filter[0].category === 'gym' ? 'selected' : ''}>gym</option>
+    <option ${filter[0].category === 'family' ? 'selected' : ''}>family</option>
+    <option ${filter[0].category === 'invoice' ? 'selected' : ''}>invoice</option>
+    <option ${filter[0].category === 'other' ? 'selected' : ''}>other</option>
     `}
        
     </select>
@@ -51,7 +51,7 @@ root.innerHTML = `
     <legend class="px-2 ">Amount</legend>
     <input value=${filter[0].amount} id="amount" type="text" placeholder="amount.." class="bg-gray-200 dark:bg-gray-800 w-full py-1 px-2 focus:outline-none" required/>
 </fieldset>
-<button class="bg-purple-300 dark:bg-purple-400 text-purple-800 p-3">Add New Invoice</button>
+<button class="bg-purple-300 dark:bg-purple-400 text-purple-800 p-3">Update Invoice</button>
 </form>`;
 
 const income = document.getElementsByName('income');
@@ -73,6 +73,60 @@ income[1].addEventListener('click', () => {
     <option>other</option>`;
     category.innerHTML = html;
 });
+
+
+
+const invForm = document.querySelector('#invForm');
+
+invForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const data = JSON.parse(localStorage.getItem('data'));
+    const date = document.querySelector('#date');
+    const income = document.getElementsByName('income');
+    const category = document.querySelector('#category');
+    const amount = document.querySelector('#amount');
+
+    const numberRegex = /^\d+$/;
+
+    const getIcon = (val) => {
+        switch(val){
+            case 'shopping':
+                return 'storefront'
+            case 'gym':
+                return 'exercise'
+            case 'family':
+                return 'family_restroom'
+            case 'invoice':
+                return 'request_page'
+            case 'other':
+                return 'payments'
+        }
+    }
+
+
+    if(!numberRegex.test(amount.value)){
+        alert('amount input is invalid, please use only numbers');
+        return;
+    }
+
+    const newData = data.map( (inv) => {
+        if(+getID === inv.id){
+            return {
+                ...inv,
+                date: date.value,
+                type: income[0].checked ? true : false,
+                category: category.value,
+                amount: amount.value,
+                icon: getIcon(category.value)
+            }
+        } else {
+            return inv;
+        }
+    });
+
+   localStorage.setItem('data', JSON.stringify(newData));
+})
 
 
 } )    
